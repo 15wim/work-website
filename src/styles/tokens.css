@@ -1,0 +1,71 @@
+:root {
+  /* ── Colors ── */
+  --color-navy:         #1C1C1E;
+  --color-navy-light:   #2C2C2E;
+  --color-navy-lighter: #3A3A3C;
+  --color-gold:         #C9A84C;
+  --color-gold-light:   #E8C97A;
+  --color-gold-dim:     #A8893A;
+  --color-cream:        #FAFAF8;
+  --color-cream-dark:   #F2F0EB;
+  --color-slate:        #3D3D3D;
+  --color-slate-light:  #6E6E73;
+  --color-white:        #FFFFFF;
+  --color-border:       rgba(201, 168, 76, 0.18);
+  --color-border-light: rgba(255, 255, 255, 0.1);
+  --color-border-dark:  rgba(28, 28, 30, 0.1);
+
+  /* ── Typography ── */
+  --font-display: 'Nunito', system-ui, sans-serif;
+  --font-body:    'Open Sans', system-ui, sans-serif;
+
+  /* ── Type scale ── */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+
+  /* ── Spacing ── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* ── Layout ── */
+  --max-width:      1100px;
+  --section-v-pad:  var(--space-24);
+  --section-h-pad:  var(--space-6);
+
+  /* ── Transitions ── */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Borders ── */
+  --radius-sm:   4px;
+  --radius-md:   10px;
+  --radius-lg:   18px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:   0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md:   0 4px 20px rgba(0, 0, 0, 0.09);
+  --shadow-lg:   0 12px 40px rgba(0, 0, 0, 0.14);
+  --shadow-gold: 0 4px 20px rgba(201, 168, 76, 0.18);
+}

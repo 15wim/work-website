@@ -1,0 +1,59 @@
+---
+description: Memory and progress tracking — always loaded
+alwaysApply: true
+---
+
+# Memory & Progress Rules
+
+## Required reads at session start
+1. `AGENTS.md` (project conventions)
+2. `MEMORY.md` (durable knowledge — past decisions, gotchas, corrections)
+3. `PROGRESS.md` (current task state)
+
+If any of these are missing, **propose creating them** before doing other work.
+
+## When to update `MEMORY.md`
+Append (don't rewrite) when any of these happen:
+
+- The user **corrects** you → write the correction under "## Mistakes & corrections" **in the same response as the acknowledgement**, not later.
+- An **architectural decision** is made (we picked X over Y) → write under "## Architecture decisions" with the reason.
+- You discover a **non-obvious gotcha** (a library quirk, a Supabase behavior, an env-specific issue) → write under "## Gotchas".
+- The user expresses a **preference** about workflow, tone, or style → write under "## User preferences".
+- A **domain term** comes up that needs definition → write under "## Domain glossary".
+
+Format every entry with a date prefix: `- 2026-05-02: ...`
+
+Keep `MEMORY.md` under 300 lines. If it grows past that, propose a cleanup pass.
+
+## When to update `PROGRESS.md`
+- At the **start** of a new task: replace the contents with the new plan (after user approval).
+- After **each completed step**: check the box.
+- Before **ending the session**: update "Next Session Should Start By" so future-you knows where to resume.
+
+`PROGRESS.md` template:
+```markdown
+## Current Task
+[one sentence describing the active task]
+
+## Status
+- [x] Step 1 — done
+- [x] Step 2 — done
+- [ ] Step 3 — IN PROGRESS
+- [ ] Step 4
+- [ ] Step 5
+
+## Blockers / Open Questions
+- ...
+
+## Next Session Should Start By
+- ...
+
+## Last updated
+2026-05-02
+```
+
+## What never goes in either file
+- Secrets, API keys, tokens, passwords
+- Personal user data
+- Full file contents (link to the file path instead)
+- Speculation phrased as fact

@@ -1,0 +1,37 @@
+---
+description: React frontend rules
+globs: src/**/*.{ts,tsx,js,jsx}
+alwaysApply: false
+---
+
+# React Frontend Rules
+
+## Components
+- Function components only — no class components, ever.
+- One component per file. Default-export the component, named-export anything else.
+- Folder per component: `src/components/Button/{Button.tsx, Button.css, Button.test.tsx}`.
+- Props typed with an interface named `<Component>Props`. Place it directly above the component.
+- No `any`. Use `unknown` and narrow.
+
+## Hooks
+- All hooks at the top of the component, in fixed order. No conditional hooks.
+- Custom hooks live in `src/hooks/` and start with `use`.
+- Side effects go in `useEffect` with an exhaustive dependency array — never disable `react-hooks/exhaustive-deps`.
+
+## State
+- Local state first. Lift only when shared.
+- No prop drilling beyond 2 levels — use context or a custom hook.
+- For server state (Supabase queries), use a single fetching pattern across the app. Pick one and stick to it (TanStack Query is the default if asked).
+
+## Supabase access from the frontend
+- Always import the client from `src/lib/supabase.ts`. Never call `createClient()` anywhere else.
+- Auth state comes from one `useAuth` hook only.
+- Never use the service-role key in frontend code. If a task seems to require it, **stop and ask** — it belongs in an Edge Function.
+
+## Files to ask before touching
+- `src/main.tsx`, `src/App.tsx`, `src/lib/supabase.ts` — these are foundational. Propose changes before editing.
+
+## Forbidden
+- Inline styles (`style={{...}}`) for anything beyond one-off dynamic values.
+- `dangerouslySetInnerHTML` without an explicit security justification.
+- `any`, `@ts-ignore`, `@ts-expect-error` without a comment explaining why.

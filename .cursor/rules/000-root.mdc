@@ -1,0 +1,43 @@
+---
+description: Root project rules — always loaded
+alwaysApply: true
+---
+
+# Root Rules
+
+You are working in a React + Supabase + Node.js project. **Always read `AGENTS.md`, `MEMORY.md`, and `PROGRESS.md` at the start of every session before responding to the first request.**
+
+## The Four-Phase Workflow (non-negotiable)
+
+1. **PLAN** — Restate the request, list files to read/modify, flag risks, estimate scope.
+2. **VERIFY** — Present the plan. **Wait for explicit user approval before writing any code.**
+3. **EXECUTE** — Work the plan in steps. Post a short progress report after each meaningful unit (✅ done / ⏳ next / ⚠️ surprises).
+4. **REMEMBER** — Update `MEMORY.md` (corrections, gotchas, decisions) and `PROGRESS.md` (current task state) before ending.
+
+## Permission Required Before
+
+- Installing/removing dependencies
+- Editing any config file (`package.json`, `tsconfig.json`, `vite.config.*`, lint configs)
+- Creating or running database migrations
+- Modifying RLS policies or auth flows
+- Deleting any file
+- Refactoring across more than 3 files
+- Touching `.env*` or anything secret-related
+- Pushing, deploying, or publishing
+
+Format: *"I'd like to do X because Y. This affects [files]. Approve?"* Then stop.
+
+## Hard Rules
+
+- TypeScript with `strict: true` for new files.
+- pnpm, not npm, unless unavailable.
+- No new top-level folders without permission.
+- Never commit, push, or rebase. The user does that.
+- Never disable a lint rule to make code pass — fix the code.
+- When the user corrects you, append the correction to `MEMORY.md` in the same response.
+
+## Stack Reminders
+
+- **Frontend:** React function components only, plain CSS (no Tailwind, no CSS-in-JS), semantic HTML, design tokens from `src/styles/tokens.css`.
+- **Backend:** Supabase first (Auth, DB, Storage, Edge Functions). Only fall back to `server/` Node when Supabase can't do it.
+- **Auth:** All Supabase access through `src/lib/supabase.ts`. Service-role key never touches the frontend.

@@ -1,0 +1,52 @@
+---
+description: Linting, formatting, and quality gates
+globs: **/*.{ts,tsx,js,jsx,css,html,json}
+alwaysApply: false
+---
+
+# Linter & Quality Rules
+
+## The pipeline (mentally simulate this before reporting "done")
+```
+pnpm lint          # ESLint + Stylelint
+pnpm typecheck     # tsc --noEmit
+pnpm test          # Vitest
+pnpm format:check  # Prettier
+```
+
+If you suspect any step would fail, **fix it before reporting done**.
+
+## Mandatory tools
+- **ESLint v9+** (flat config) with `@typescript-eslint`, `eslint-plugin-react`, `eslint-plugin-react-hooks`, `eslint-plugin-jsx-a11y`, `eslint-plugin-import`.
+- **Prettier** — config in `.prettierrc`, never argue with its output.
+- **Stylelint** with `stylelint-config-standard` for CSS files.
+- **TypeScript** with `strict: true`, `noUncheckedIndexedAccess: true`, `noImplicitOverride: true`.
+- **Husky** + **lint-staged** for pre-commit gates.
+- **commitlint** with conventional-commits config.
+
+## How to handle lint failures
+- **Fix the code, not the rule.** Disabling a rule requires a comment explaining why and is reviewed.
+- If a rule is genuinely wrong for this project, **propose a config change with rationale** — don't sneak it in.
+
+## Allowed escape hatches (each requires a comment)
+```ts
+// eslint-disable-next-line <rule> — <reason>
+// @ts-expect-error — <reason; remove when fixed>
+```
+
+`@ts-ignore` is forbidden. Use `@ts-expect-error` so the suppression itself becomes an error if the underlying issue is fixed.
+
+## Commits
+- Conventional commits: `feat:`, `fix:`, `refactor:`, `docs:`, `test:`, `chore:`, `ci:`.
+- Subject ≤ 72 chars, imperative mood: "add login button" not "added" or "adds".
+- Body explains *why*, not *what* (the diff shows what).
+- Reminder: **the agent never commits**. The user does.
+
+## Pre-commit (handled by Husky)
+Runs on staged files only:
+1. Prettier write
+2. ESLint --fix
+3. Stylelint --fix
+4. tsc --noEmit (on whole project — fast in incremental mode)
+
+If pre-commit fails, **don't bypass with `--no-verify`**. Fix the issue.

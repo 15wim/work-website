@@ -1,0 +1,56 @@
+---
+description: CSS and semantic HTML rules
+globs: src/**/*.{css,tsx,jsx,html}
+alwaysApply: false
+---
+
+# CSS & HTML Rules
+
+## CSS philosophy
+- Plain CSS only. No Tailwind, no styled-components, no Emotion, no CSS Modules unless the user explicitly opts in.
+- Co-locate `<Component>.css` next to `<Component>.tsx` and import it at the top of the component file.
+- Global styles live in `src/styles/` only: `tokens.css`, `reset.css`, `global.css`.
+
+## Design tokens (mandatory)
+All colors, spacing, font sizes, radii, and shadows come from CSS custom properties defined in `src/styles/tokens.css`. Never hardcode them.
+
+```css
+/* ❌ Don't */
+.button { background: #3b82f6; padding: 12px; }
+
+/* ✅ Do */
+.button { background: var(--color-primary); padding: var(--space-3); }
+```
+
+If you need a token that doesn't exist yet, **propose it before adding** to `tokens.css`.
+
+## Naming — BEM
+- Block: `.card`
+- Element: `.card__title`
+- Modifier: `.card--featured`, `.card__title--large`
+
+One block per CSS file. The block name matches the component.
+
+## Semantic HTML
+- Use the right element. Not `<div onClick>` — use `<button>`.
+- Required: `<main>`, `<nav>`, `<header>`, `<footer>`, `<article>`, `<section>`, `<aside>` where appropriate.
+- Forms always have `<label for="...">` paired with inputs.
+- Headings in order: never skip from `<h1>` to `<h3>`.
+
+## Accessibility (the linter checks; you check too)
+- Every interactive element keyboard-reachable (Tab + Enter/Space).
+- Every image has `alt` (empty `alt=""` if decorative).
+- Every form field has an associated label.
+- Color contrast meets WCAG AA (4.5:1 for body text).
+- Focus styles visible — never `outline: none` without an alternative `:focus-visible` style.
+
+## Responsive
+- Mobile-first. Base styles target mobile, media queries add desktop.
+- Breakpoints come from tokens: `var(--bp-md)`, etc.
+- Use `rem` for typography and spacing, `px` only for borders/hairlines.
+
+## Animations
+- Respect `prefers-reduced-motion`. Wrap any non-essential motion in:
+  ```css
+  @media (prefers-reduced-motion: no-preference) { /* animation */ }
+  ```

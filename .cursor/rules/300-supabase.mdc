@@ -1,0 +1,50 @@
+---
+description: Supabase (Auth, DB, Storage, Edge Functions) rules
+globs: supabase/**/*, src/lib/supabase.*, **/*supabase*.{ts,tsx,js}
+alwaysApply: false
+---
+
+# Supabase Rules
+
+## Client setup
+- One client per environment. Frontend uses anon key from `import.meta.env.VITE_SUPABASE_ANON_KEY`.
+- Single source of truth: `src/lib/supabase.ts`. Anywhere else that needs the client imports it from there.
+- Service-role client lives **only** in `supabase/functions/` or `server/`. If frontend code needs elevated access, write an Edge Function and call it.
+
+## Row Level Security (RLS) — critical
+- **Every table must have RLS enabled before being used by the client.**
+- Default deny. Add policies explicitly per role (`authenticated`, `anon`, custom).
+- **Always ask permission before creating, modifying, or dropping a policy.** RLS mistakes leak data.
+- Test policies with both an authenticated and anonymous client before declaring done.
+
+## Migrations
+- Every schema change is a migration file in `supabase/migrations/` named `YYYYMMDDHHMMSS_description.sql`.
+- Migrations are append-only. Never edit a migration that has been applied to a remote environment.
+- **Always ask permission before running `supabase db push` or applying migrations to a remote project.** Local-only is fine.
+- Include a comment block at the top of every migration: purpose, tables touched, rollback notes.
+
+## Auth
+- One `useAuth` hook for the whole app. No duplicate `onAuthStateChange` listeners.
+- Session refresh is automatic — don't reimplement it.
+- For OAuth providers, document required redirect URLs in `docs/auth-setup.md`.
+- Never store JWTs in localStorage manually — Supabase handles persistence.
+
+## Edge Functions
+- One folder per function: `supabase/functions/<function-name>/index.ts`.
+- Always validate input with `zod` before doing work.
+- Return JSON with proper CORS headers — use a shared helper.
+- Never hardcode secrets. Read from `Deno.env.get()`.
+
+## Storage
+- Bucket names in `kebab-case`.
+- Set bucket-level policies; don't rely on object-level only.
+- Generate signed URLs server-side for private buckets.
+
+## Querying
+- Prefer `.select('explicit, columns')` over `.select('*')`.
+- Always handle the `error` from every Supabase call — never just destructure `data`.
+- Pagination via `.range()` for large tables; never load unbounded.
+
+## Realtime
+- Subscribe in `useEffect`, **always** unsubscribe in the cleanup function.
+- Channel names should be unique and descriptive: `messages:room-${roomId}`.

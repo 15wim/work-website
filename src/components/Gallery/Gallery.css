@@ -1,0 +1,108 @@
+.gallery {
+  background: var(--color-cream);
+}
+
+.gallery__grid {
+  columns: 3;
+  column-gap: var(--space-4);
+}
+
+.gallery__item {
+  display: block;
+  width: 100%;
+  margin-bottom: var(--space-4);
+  break-inside: avoid;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.gallery__img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-slow);
+}
+
+.gallery__item:hover .gallery__img {
+  transform: scale(1.03);
+}
+
+.gallery__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 28, 30, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  border-radius: var(--radius-md);
+}
+
+.gallery__item:hover .gallery__overlay { opacity: 1; }
+.gallery__item:focus-visible .gallery__overlay { opacity: 1; }
+
+.gallery__overlay-icon {
+  font-size: 2rem;
+  color: var(--color-cream);
+  line-height: 1;
+}
+
+/* ── Lightbox ── */
+.gallery__lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  animation: lb-in 0.2s ease;
+}
+
+@keyframes lb-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.gallery__lightbox-img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: var(--radius-md);
+  object-fit: contain;
+  box-shadow: var(--shadow-lg);
+}
+
+.gallery__lightbox-close {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  font-size: var(--text-xl);
+  color: var(--color-cream);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.gallery__lightbox-close:hover { background: rgba(255, 255, 255, 0.2); }
+
+@media (max-width: 768px) {
+  .gallery__grid { columns: 2; }
+}
+
+@media (max-width: 480px) {
+  .gallery__grid { columns: 1; }
+}

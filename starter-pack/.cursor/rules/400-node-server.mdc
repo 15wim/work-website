@@ -1,0 +1,45 @@
+---
+description: Node.js backend rules (only when Supabase Edge Functions aren't enough)
+globs: server/**/*.{ts,js}
+alwaysApply: false
+---
+
+# Node.js Server Rules
+
+> Use this layer **only** when something cannot reasonably be done in a Supabase Edge Function (long-running jobs, websockets we control, third-party SDK that doesn't run in Deno, etc.). If unsure, ask before adding code here.
+
+## Framework
+- Fastify preferred. Express acceptable if the user already chose it.
+- TypeScript strict mode. No JS files in `server/`.
+
+## Structure
+```
+server/
+├── index.ts          # Entry — wires plugins, starts listener
+├── routes/           # One file per resource: users.ts, posts.ts
+├── middleware/       # Auth, logging, error handler
+├── lib/              # Supabase service-role client, third-party clients
+└── schemas/          # zod schemas for request validation
+```
+
+## Patterns
+- Async/await everywhere. No raw `.then()` chains.
+- Every route handler validates its body with `zod` before doing anything.
+- Every route handler is wrapped in a try/catch that delegates to the central error middleware. Never silently swallow errors.
+- Use a request-scoped logger (`pino`) — include a request ID on every log line.
+
+## Security
+- Never trust `req.body`, `req.query`, or `req.params` — validate first.
+- Verify the Supabase JWT on every protected route. Don't reinvent auth.
+- Rate-limit any public endpoint. Default: 60 req/min per IP.
+- CORS: explicit allowlist, never `*` in production.
+- Service-role Supabase key only used here, read from `process.env`. Never log it.
+
+## Errors
+- Throw typed errors (`class HttpError extends Error { status: number }`).
+- The central error middleware maps them to JSON responses: `{ error: { code, message } }`.
+- 4xx for client mistakes, 5xx for server bugs. Don't return 500 for a missing query param.
+
+## Testing
+- Every route has at least one happy-path and one failure-path test in `tests/integration/`.
+- Use a separate Supabase project (or local instance) for tests — never the dev DB.

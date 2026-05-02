@@ -1,0 +1,76 @@
+@import './reset.css';
+@import './tokens.css';
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-slate);
+  background-color: var(--color-cream);
+}
+
+/* ── Section wrapper ── */
+.section {
+  padding: var(--section-v-pad) var(--section-h-pad);
+}
+
+.section__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ── Section heading ── */
+.section__label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold-dim);
+  margin-bottom: var(--space-3);
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: var(--color-navy);
+  line-height: 1.15;
+  margin-bottom: var(--space-12);
+  letter-spacing: -0.01em;
+}
+
+/* ── Scroll-reveal animation ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--delay-1 { transition-delay: 0.08s; }
+.reveal--delay-2 { transition-delay: 0.16s; }
+.reveal--delay-3 { transition-delay: 0.24s; }
+.reveal--delay-4 { transition-delay: 0.32s; }
+.reveal--delay-5 { transition-delay: 0.40s; }
+.reveal--delay-6 { transition-delay: 0.48s; }
+
+/* ── Dark section overrides ── */
+.section--dark .section__label {
+  color: var(--color-gold);
+}
+
+.section--dark .section__title {
+  color: var(--color-cream);
+}
+
+/* ── Responsive typography ── */
+@media (max-width: 768px) {
+  .section__title { font-size: var(--text-3xl); }
+  .section { padding: var(--space-16) var(--space-5); }
+}
