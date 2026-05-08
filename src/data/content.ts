@@ -48,7 +48,7 @@ export const expertise: ExpertiseDomain[] = [
     icon: '◆',
     title: 'Vendor & Partner Management',
     description:
-      'Microsoft, Avanade, VeriPark, Concentra/EQ, Identifi, and SDK engagements — driving vendors toward practical, secure, cost-effective integration outcomes.',
+      'ThoughtSpot, AWS, GCP, Microsoft, Databricks, Fiserv, CGI, Celero, Central 1, Salesforce, Avanade, VeriPark, Concentra/EQ, and many other strategic partners — driving vendors toward practical, secure, and cost-effective integration outcomes.',
   },
 ];
 
@@ -154,12 +154,12 @@ export const skills: SkillGroup[] = [
   {
     category: 'Databases & Cloud',
     icon: '⬡',
-    skills: ['SQL Server', 'Azure Synapse', 'Microsoft Fabric', 'GCP', 'AWS', 'DB2', 'Hive', 'Oracle'],
+    skills: ['SQL Server', 'Azure', 'Microsoft Fabric', 'GCP', 'AWS', 'DB2', 'Hive', 'Oracle', 'AEM'],
   },
   {
     category: 'Tools & Platforms',
     icon: '◈',
-    skills: ['Microsoft Purview', 'Azure DevOps', 'Azure Data Factory', 'JIRA', 'Bitbucket', 'Dynamics 365', 'Salesforce'],
+    skills: ['Microsoft Purview', 'Azure DevOps', 'Azure Data Factory', 'JIRA', 'Bitbucket', 'Dynamics 365', 'Salesforce', 'VS Code', 'Cursor', 'SSMS', 'R Studio', 'Spyder', 'Toad', 'ACL', 'CRON'],
   },
 ];
 
@@ -192,14 +192,18 @@ export const education: EducationItem[] = [
 export const certifications: CertItem[] = [
   { id: 'cip', name: 'Chartered Insurance Professional (C.I.P)', issuer: 'Insurance Institute of Canada' },
   { id: 'sas', name: 'SAS Certified Predictive Modeler', issuer: 'SAS Institute' },
+  { id: 'azure-fundamentals', name: 'Azure Fundamentals (AZ-900)', issuer: 'Microsoft' },
+  { id: 'fabric', name: 'Modern Data Architecture Fundamentals with Microsoft Fabric', issuer: 'Microsoft' },
   { id: 'bigdata', name: 'Big Data Foundations: Techniques & Concepts', issuer: 'IBM' },
+  { id: 'vibe-coding', name: 'Vibe Coding for Data Analysts', issuer: 'LinkedIn Learning' },
+  { id: 'systems-analysis', name: 'Introduction to Systems Analysis', issuer: 'LinkedIn Learning' },
   { id: 'r', name: 'R Statistics Essential Training', issuer: 'LinkedIn Learning' },
   { id: 'csharp', name: 'C# & .NET: Programming', issuer: 'LinkedIn Learning' },
   { id: 'devops', name: 'DevOps Masterclass', issuer: 'Udemy' },
 ];
 
 export const highlights: HighlightStat[] = [
-  { id: 'years', target: 15, prefix: '', suffix: '+', label: 'Years in Financial Services & Data' },
+  { id: 'years', target: 20, prefix: '', suffix: '+', label: 'Years in Financial Services & Data' },
   { id: 'portfolio', target: 40, prefix: '$', suffix: 'B+', label: 'Portfolio Value Overseen' },
   { id: 'reports', target: 80, prefix: '', suffix: '+', label: 'Analytics Reports Monthly' },
   { id: 'users', target: 3, prefix: '', suffix: 'K+', label: 'Analytics Platform Users' },
