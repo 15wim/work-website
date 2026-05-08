@@ -58,7 +58,7 @@ export const experience: ExperienceItem[] = [
     period: 'Jan 2026 – Present',
     company: 'Innovation Federal Credit Union',
     title: 'Vice President, Strategic Insights & Data Office',
-    location: 'Stoney Creek, Ontario',
+    location: 'Remote',
     current: true,
     bullets: [
       'Lead enterprise-wide Strategic Insights & Data Office spanning BI, data engineering, governance, API delivery, application development, integration architecture, and regulatory reporting.',
@@ -72,7 +72,7 @@ export const experience: ExperienceItem[] = [
     period: 'Sep 2024 – Dec 2025',
     company: 'Innovation Federal Credit Union',
     title: 'Senior Director, Analytics',
-    location: 'Stoney Creek, Ontario',
+    location: 'Remote',
     bullets: [
       'Built and structured the Strategic Insights & Data Office from the ground up, establishing operating models, role architecture, and delivery governance.',
       'Led regulatory reporting transition across CEBA, AgriInvest, CSBFP/CALA, and RESL/BCAR post-merger reporting requirements.',
