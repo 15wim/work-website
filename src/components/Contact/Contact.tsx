@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useIntersection } from '../../hooks/useIntersection';
 import './Contact.css';
 
-// Sign up at formspree.io, create a form, then replace YOUR_FORM_ID below.
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// Get your free access key at web3forms.com — enter walid.matin@gmail.com and paste the key here.
+const WEB3FORMS_KEY = '01f774b2-27d5-4d01-8392-e186fe3b394a';
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
 export default function Contact() {
   const { ref, isVisible } = useIntersection({ threshold: 0.1 });
@@ -15,8 +16,10 @@ export default function Contact() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    data.append('access_key', WEB3FORMS_KEY);
+
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
         body: data,
         headers: { Accept: 'application/json' },
