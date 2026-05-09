@@ -34,8 +34,8 @@ export default function About() {
           </p>
 
           <blockquote className="about__quote">
-            "I care just as much about the human side as the technical side — because data
-            quality is ultimately a team sport."
+            "Technical depth gets you a working pipeline. Organizational fluency gets you a
+            pipeline people actually trust and use. I bring both to the table."
           </blockquote>
 
           <div className="about__langs">

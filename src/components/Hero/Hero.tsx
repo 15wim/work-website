@@ -24,8 +24,8 @@ export default function Hero() {
           </h1>
           <p className="hero__company">Innovation Federal Credit Union</p>
           <p className="hero__tagline">
-            Data, at its best, is more than numbers — it&apos;s how an organization learns to
-            understand itself and make smarter decisions.
+            &ldquo;The organizations that win aren&apos;t the ones with the most data — they&apos;re
+            the ones that turn it into shared understanding and decisive action.&rdquo;
           </p>
           <div className="hero__actions">
             <a
