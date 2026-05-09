@@ -2,7 +2,7 @@ import { useIntersection } from '../../hooks/useIntersection';
 import './About.css';
 
 const stats = [
-  { value: '15+', label: 'Years Experience' },
+  { value: '20+', label: 'Years Experience' },
   { value: '$40B+', label: 'Portfolio Overseen' },
   { value: '3K+', label: 'Platform Users' },
 ];
@@ -27,7 +27,7 @@ export default function About() {
           </p>
 
           <p className="about__bio">
-            With over 15 years across banking, insurance, and financial services, I have learned
+            With over 20 years across banking, insurance, and financial services, I have learned
             that the best architecture in the world means nothing if the organization is not
             ready to own it. The real work is always at the intersection of technology, people,
             and trust.
